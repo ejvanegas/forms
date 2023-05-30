@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <h2>{{ schema.title }}</h2>
+  <form>
+    <label *ngFor="let control of schema.controls">
+      {{ control.label }}
+      <input
+        type="radio"
+        [name]="control.key"
+        [value]="control.value"
+        [formControlName]="control.key"
+      />
+    </label>
+  </form>
+</form>
+<pre>{{ form.value | json }}</pre>
