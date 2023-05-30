@@ -14,6 +14,8 @@ export class ListControlComponent {
 
   public form!: FormGroup;
 
+  public defaultValues: any = {};
+
   public constructor(
     private _fb: NonNullableFormBuilder,
     private _filtersService: FiltersService
@@ -24,19 +26,20 @@ export class ListControlComponent {
 
     if (this.schema.type === 'checkbox') {
       this.schema.controls.forEach((control) => {
-        this.form.addControl(control.key, new FormControl(control.checked));
+        const { key, checked } = control;
+        this.defaultValues[key] = checked;
+        this.form.addControl(key, new FormControl(checked));
       });
     }
 
     if (this.schema.type === 'radio') {
-      this.form.addControl(
-        this.schema.controls[0].key,
-        new FormControl(this.schema.controls[0].value)
-      );
+      const { key, value } = this.schema.controls[0];
+      this.defaultValues[key] = value;
+      this.form.addControl(key, new FormControl(value));
     }
 
     this._filtersService.cleanedFilters$.subscribe((_) => {
-      this.form.reset();
+      this.form.reset(this.defaultValues);
     });
   }
 }
