@@ -8,10 +8,12 @@ export interface Control {
 
 export interface Schema {
   title: string;
+  type: 'checkbox' | 'radio';
   controls: Control[];
 }
 export const LOCATION_TYPE: Schema = {
   title: 'Tipo de locación',
+  type: 'checkbox',
   controls: [
     {
       label: 'En el sitio',
@@ -36,6 +38,7 @@ export const LOCATION_TYPE: Schema = {
 
 export const DISPONIBILITY: Schema = {
   title: 'Disponibilidad',
+  type: 'checkbox',
   controls: [
     {
       label: 'Tiempo completo',
@@ -54,6 +57,7 @@ export const DISPONIBILITY: Schema = {
 
 export const ORDER: Schema = {
   title: 'Te pueden gustar',
+  type: 'radio',
   controls: [
     {
       label: 'Más recientes',
@@ -74,6 +78,7 @@ export const ORDER: Schema = {
 
 export const SPECIALTIES: Schema = {
   title: 'Especialidades',
+  type: 'checkbox',
   controls: [
     {
       label: 'Finanzas y contabilidad',

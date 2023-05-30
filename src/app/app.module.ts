@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChecksComponent } from './components/checks/checks.component';
 import { RadiosComponent } from './components/radios/radios.component';
+import { ListControlComponent } from './components/list-control/list-control.component';
 
 @NgModule({
-  declarations: [AppComponent, ChecksComponent, RadiosComponent],
+  declarations: [AppComponent, ChecksComponent, RadiosComponent, ListControlComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

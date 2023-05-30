@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+  <h2>{{ schema.title }}</h2>
+  <form>
+    <ng-container *ngIf="schema.type === 'checkbox'">
+      <label *ngFor="let control of schema.controls">
+        {{ control.label }}
+        <input type="checkbox" [formControlName]="control.key" />
+      </label>
+    </ng-container>
+
+    <ng-container *ngIf="schema.type === 'radio'">
+      <label *ngFor="let control of schema.controls">
+        {{ control.label }}
+        <input
+          type="radio"
+          [name]="control.key"
+          [value]="control.value"
+          [formControlName]="control.key"
+        />
+      </label>
+    </ng-container>
+  </form>
+</form>
+<pre>{{ form.value | json }}</pre>
