@@ -14,7 +14,7 @@ export class ListControlComponent {
 
   public form!: FormGroup;
 
-  public defaultValues: any = {};
+  public defaultValues: Record<string, any> = {};
 
   public constructor(
     private _fb: NonNullableFormBuilder,
