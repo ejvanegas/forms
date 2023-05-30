@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { Schema } from 'src/app/controls.data';
+import { FiltersService } from 'src/app/services/filters.service';
 
 @Component({
   selector: 'app-list-control',
@@ -13,7 +14,10 @@ export class ListControlComponent {
 
   public form!: FormGroup;
 
-  public constructor(private _fb: NonNullableFormBuilder) {}
+  public constructor(
+    private _fb: NonNullableFormBuilder,
+    private _filtersService: FiltersService
+  ) {}
 
   public ngOnInit(): void {
     this.form = this._fb.group({});
@@ -30,5 +34,9 @@ export class ListControlComponent {
         new FormControl(this.schema.controls[0].value)
       );
     }
+
+    this._filtersService.cleanedFilters$.subscribe((_) => {
+      this.form.reset();
+    });
   }
 }
